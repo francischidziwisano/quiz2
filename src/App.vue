@@ -1,20 +1,26 @@
 <template>
         <div class="flex w-full h-screen justify-center items-center" id="app">
             <div class="w-full max-w-xl">
-                <h1 class="font-bold text-5xl text-center text-indigo-700">
-                    Simple Quiz
+              <img alt="Vue logo" class="m-10 mx-auto w-44" src="./assets/logo.png" />
+                <h1 class="font-bold text-3xl text-center text-indigo-700">
+                    Malawi Simple Quiz
                 </h1>
-                <div class="bg-white p-24 text-left rounded-lg shadow-lg w-full mt-8">
+                <div class="bg-white p-4 text-left rounded-lg shadow-lg w-full mt-8">
                     <div v-if="index < questions.length">
                         <p class="text-2xl font-bold">
                             {{ questions[index]['question'] }}
-                        </p>
-
-                        
+                        </p>      
                         <label
                             :for="key"
                             class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg"
                             v-for="(answer, key) in questions[index]['answers']" :key="answer.question"
+                            :class="[
+                                selectedAnswer == key ? 'bg-red-200' : 'hover:bg-gray-100 cursor-pointer', 
+                                key == questions[index]['correctAnswer'] && selectedAnswer != '' ? 'bg-green-200' : 'hover:bg-gray-100 cursor-pointer'
+
+                            ]                
+                        "
+
                         >
                             <input
                                 type="radio"
@@ -167,6 +173,22 @@ export default {
                   c: "2004 to 2012",
                   d: "2004 to 2013"},
                   correctAnswer: "c",
+                },
+                {
+                  question: "Shire river is in the following districts except?",
+                  answers: {a: "Neno",
+                  b: "Mangochi",
+                  c: "Liwonde",
+                  d: "Balaka"},
+                  correctAnswer: "d",
+                },
+                {
+                  question: "When did Dr. Hestings Kamuzu Died?",
+                  answers: {a: "1996",
+                  b: "1997",
+                  c: "1998",
+                  d: "1999"},
+                  correctAnswer: "b",
                 },
             ],
         }
